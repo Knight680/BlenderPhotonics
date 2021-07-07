@@ -7,18 +7,16 @@ from .utils import get_scene_objs
 from .py_props import my_dict, my_list
 
 
-class Test_Ops(bpy.types.Operator):
-    bl_label = '物体移动按钮'
-    bl_description = "这是一个可以移动物体的按钮"
+class Creat_volum_mesh_from_your_creat(bpy.types.Operator):
+    bl_label = 'Tetrahedralize your creations'
+    bl_description = "This button could tetrahedralize your creations"
     bl_idname = 'a_test.test_ops'
 
     # 可以让操作执行后左下角显示一个提示
 
     bl_options = {"REGISTER", "UNDO"}
-    move_axis: bpy.props.EnumProperty(items=(("X", "X", "沿着X轴移动", 0),
-                                             ("Y", "Y", "沿着Y轴移动", 1),
-                                             ("Z", "Z", "沿着Z轴移动", 2)))
-    move_step: bpy.props.FloatProperty(default=10.0, name="移动距离")
+    Keepratio: bpy.props.FloatProperty(default=1,name="ratio keep for volum mesh(0-1)")
+    Maxvolum: bpy.props.FloatProperty(default=100, name="Max_tetrahedraw_volum")
 
     def func(self):
         for o in bpy.context.selected_objects:
