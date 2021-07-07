@@ -29,13 +29,13 @@ class Test_AddonPref(bpy.types.AddonPreferences):
 
 def register():
     print("Run MMC in Blender installed")
-    bpy.utils.register_class(Creat_volum_mesh_from_your_creat)
-    bpy.utils.register_class(Creat_volum_mesh_from_your_data)
-    bpy.utils.register_class(Run_MMC)
+    bpy.utils.register_class(Test_Ops)
+    bpy.utils.register_class(Test_Panel)
+    bpy.utils.register_class(Test_AddonPref)
 
 
 def unregister():
     print("Run MMC in Blender uninstalled")
-    bpy.utils.unregister_class(Creat_volum_mesh_from_your_creat)
-    bpy.utils.unregister_class(Creat_volum_mesh_from_your_data)
-    bpy.utils.unregister_class(Run_MMC)
+    bpy.utils.unregister_class(Test_AddonPref)
+    bpy.utils.unregister_class(Test_Panel)
+    bpy.utils.unregister_class(Test_Ops)
