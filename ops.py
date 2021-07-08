@@ -7,10 +7,10 @@ from .utils import get_scene_objs
 from .py_props import my_dict, my_list
 
 
-class Test_Ops(bpy.types.Operator):
+class Creatregion(bpy.types.Operator):
     bl_label = 'genert volumatic mesh'
     bl_description = "这是一个可以移动物体的按钮"
-    bl_idname = 'a_test.test_ops'
+    bl_idname = 'a_test.creatregion'
 
     # 可以让操作执行后左下角显示一个提示
 
@@ -49,7 +49,7 @@ class Test_Ops(bpy.types.Operator):
         f = np.array(faces)
 
         # Save file
-        scipy.io.savemat('result.mat', mdict={'v':v, 'f':f})
+        scipy.io.savemat('result.mat', mdict={'v':v, 'f':f, 'ratio':self.keepratio, 'maxv':self.maxvolum})
         oc.run('/Users/knight/model/demo_blender.m')
 
     def execute(self, context):

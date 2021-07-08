@@ -29,7 +29,7 @@ class Test_AddonPref(bpy.types.AddonPreferences):
 
 def register():
     print("Run MMC in Blender installed")
-    bpy.utils.register_class(Test_Ops)
+    bpy.utils.register_class(Creatregion)
     bpy.utils.register_class(Test_Panel)
     bpy.utils.register_class(Test_AddonPref)
 
@@ -38,4 +38,4 @@ def unregister():
     print("Run MMC in Blender uninstalled")
     bpy.utils.unregister_class(Test_AddonPref)
     bpy.utils.unregister_class(Test_Panel)
-    bpy.utils.unregister_class(Test_Ops)
+    bpy.utils.unregister_class(Creatregion)
