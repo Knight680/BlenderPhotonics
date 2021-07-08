@@ -1,5 +1,5 @@
 import bpy
-from .ops import Test_Ops
+from .ops import Creatregion
 
 
 class Test_Panel(bpy.types.Panel):
@@ -16,4 +16,5 @@ class Test_Panel(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
         col = layout.column()
-        col.operator(Test_Ops.bl_idname)
+        col.operator(Creatregion.bl_idname)
+        col.operator(Test_Panel.bl_idname)

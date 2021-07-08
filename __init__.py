@@ -2,7 +2,7 @@ bl_info = {
     "name": "Run MMC in Blender",
     "author": "Victor",
     "version": (1, 0),  # 插件版本
-    "blender": (2, 93, 0),  # 支持blender版本
+    "blender": (2, 91, 0),  # 支持blender版本
     "location": "关于插件位于哪个面板的描述 3D视窗+N面板",
     "description": "Modeling in Blender and autorun mmc in Octave",
     "warning": "work with Blender and MMC in Octave. Matlab is not support. Tested on Linux；Save your blender file before using this add-on!",
@@ -11,20 +11,20 @@ bl_info = {
     "category": "插件的分类 Object",
 }
 import bpy
-from .ops import Test_Ops
+from .ops import Creatregion
 from .ui import Test_Panel
 
 
 class Test_AddonPref(bpy.types.AddonPreferences):
     bl_idname = __package__
     root: bpy.props.StringProperty(name="Asset root directory",
-                                   default="C:/tmp/new_assets",
+                                   default=bpy.utils.user_resource('SCRIPTS', "addons"),
                                    description="Path to Root Asset Directory",
                                    subtype="DIR_PATH"
                                    )
 
     def draw(self, context):
-        self.layout.row().prop(self, "root", text="预设的根目录")
+        self.layout.row().prop(self, "root", text="Mat folder")
 
 
 def register():
