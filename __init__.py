@@ -2,40 +2,40 @@ bl_info = {
     "name": "Run MMC in Blender",
     "author": "Victor",
     "version": (1, 0),  # 插件版本
-    "blender": (2, 93, 0),  # 支持blender版本
+    "blender": (2, 91, 0),  # 支持blender版本
     "location": "关于插件位于哪个面板的描述 3D视窗+N面板",
     "description": "Modeling in Blender and autorun mmc in Octave",
-    "warning": "work with Blender and MMC in Octave. Matlab is not support. Tested on Linux；Save your blender file before using this add-on!",
+    "warning": "work with Blender and MMC in Octave. Matlab is not support. Tested on MacOS；Save your blender file before using this add-on!",
     "doc_url": "插件的网页链接",
-    "tracker_url": "bug 汇报",
-    "category": "插件的分类 Object",
+    "tracker_url": "bug report",
+    "category": "Photon Simulation",
 }
 import bpy
-from .ops import Test_Ops
+from .Genert_Volumatic_Mesh import Creatregion
 from .ui import Test_Panel
-
-
-class Test_AddonPref(bpy.types.AddonPreferences):
-    bl_idname = __package__
-    root: bpy.props.StringProperty(name="Asset root directory",
-                                   default="C:/tmp/new_assets",
-                                   description="Path to Root Asset Directory",
-                                   subtype="DIR_PATH"
-                                   )
-
-    def draw(self, context):
-        self.layout.row().prop(self, "root", text="预设的根目录")
-
+from .Import_Mesh import import_volum_mesh
+from .RunMMC import runmmc
+from .Niipath import MyProperties
+from bpy.props import PointerProperty
+from .Genert_mesh_from_nii import niitomesh
 
 def register():
     print("Run MMC in Blender installed")
-    bpy.utils.register_class(Creat_volum_mesh_from_your_creat)
-    bpy.utils.register_class(Creat_volum_mesh_from_your_data)
-    bpy.utils.register_class(Run_MMC)
+    bpy.utils.register_class(MyProperties)
+    bpy.utils.register_class(niitomesh)
+    bpy.utils.register_class(Creatregion)
+    bpy.utils.register_class(import_volum_mesh)
+    bpy.utils.register_class(runmmc)
+    bpy.utils.register_class(Test_Panel)
+    bpy.types.Scene.my_tool = PointerProperty(type=MyProperties)
 
 
 def unregister():
     print("Run MMC in Blender uninstalled")
-    bpy.utils.unregister_class(Creat_volum_mesh_from_your_creat)
-    bpy.utils.unregister_class(Creat_volum_mesh_from_your_data)
-    bpy.utils.unregister_class(Run_MMC)
+    bpy.utils.unregister_class(MyProperties)
+    bpy.utils.unregister_class(niitomesh)
+    bpy.utils.unregister_class(Creatregion)
+    bpy.utils.unregister_class(import_volum_mesh)
+    bpy.utils.unregister_class(runmmc)
+    bpy.utils.unregister_class(Test_Panel)
+    del bpy.types.Scene.my_tool
