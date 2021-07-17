@@ -1,29 +1,20 @@
 import bpy
-from .Genert_Volumatic_Mesh import Creatregion
-from .Import_Mesh import import_volum_mesh
-from .RunMMC import runmmc
-from .Niipath import MyProperties
-from .Genert_mesh_from_nii import niitomesh
+from .ops import Creatregion
+
 
 class Test_Panel(bpy.types.Panel):
+    # 标签
     bl_label = 'a-test'
     bl_idname = 'A_TEST_PL'
+    # 面板所属区域
     bl_space_type = "VIEW_3D"
+    # 显示面板的地方
     bl_region_type = "UI"
+    # 显示面板的地方的归类
     bl_category = "A-TEST"
-    bl_context = "objectmode"
-
-    @classmethod
-    def poll(self,context):
-        return context.object is not None
 
     def draw(self, context):
         layout = self.layout
-        scene = context.scene
-        mytool = scene.my_tool
-        layout.prop(mytool, "my_path")
         col = layout.column()
-        col.operator(niitomesh.bl_idname)
         col.operator(Creatregion.bl_idname)
-        col.operator(import_volum_mesh.bl_idname)
-        col.operator(runmmc.bl_idname)
+        col.operator(Test_Panel.bl_idname)
