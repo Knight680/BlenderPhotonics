@@ -31,6 +31,7 @@ class Creatregion(bpy.types.Operator):
         obj = bpy.context.view_layer.objects.active
         #jioned
         bpy.ops.object.select_all(action='SELECT')
+        bpy.ops.object.convert(target='MESH')
         if len(bpy.context.selected_objects)>=2:
             bpy.ops.object.join()
 
@@ -52,9 +53,6 @@ class Creatregion(bpy.types.Operator):
             verts.append(v_global)
         edges = [edge.vertices[:] for edge in obj.data.edges]
         faces = [face.vertices[:] for face in obj.data.polygons]
-        v = np.array(verts)
-        f = np.array(faces)
-
         print("="*40) # printing marker
 
         oc = op.Oct2Py()

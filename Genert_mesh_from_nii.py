@@ -13,7 +13,7 @@ class niitomesh(bpy.types.Operator):
         os.chdir(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model')
         
         # Remove last .stl file
-        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/niistlfile')
+        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/stlfile')
         lst_ply = os.listdir(in_dir_ply)
         c=0
         for item in lst_ply:
@@ -33,7 +33,7 @@ class niitomesh(bpy.types.Operator):
         bpy.ops.object.select_all(action='SELECT')
         bpy.ops.object.delete()
         # folder path for importing .stl files
-        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/niistlfile')
+        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/stlfile')
         lst_ply = os.listdir(in_dir_ply)
 
         # Filter file list by valid file types.

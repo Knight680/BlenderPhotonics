@@ -19,8 +19,8 @@ class runmmc(bpy.types.Operator):
         for obj in bpy.data.objects[0:-1]:
             parameters.append(obj["mu_a"])
             parameters.append(obj["mu_s"])
-            parameters.append(obj["n"])
             parameters.append(obj["g"])
+            parameters.append(obj["n"])
         parameters = np.array(parameters)
 
         obj = bpy.data.objects['light']
@@ -29,6 +29,7 @@ class runmmc(bpy.types.Operator):
         direction =  np.array(bpy.context.object.rotation_quaternion)
         light_source.append(obj["nphoton"])
         light_source.append(obj["Type"])
+        light_source.append(obj["unitinmm"])
         light_source = np.array(light_source)
 
         # Save MMC information

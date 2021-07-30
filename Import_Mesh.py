@@ -44,8 +44,8 @@ class import_volum_mesh(bpy.types.Operator):
         for obj in bpy.data.objects:
             obj["mu_a"] = 0.1
             obj["mu_s"] = 0.1
-            obj["n"] = 0.1
-            obj["g"] = 0.1
+            obj["n"] = 1.37
+            obj["g"] = 0.89
 
         ## add light
         light_data = bpy.data.lights.new(name="light", type='SPOT')
@@ -59,6 +59,7 @@ class import_volum_mesh(bpy.types.Operator):
         ## add cfg option
         obj = bpy.data.objects['light']
         obj["nphoton"] = 100
+        obj["unitinmm"] = 1.0
         obj["Type"] = 1 # pencil:'1'  disk:'2'
 
     def execute(self, context):

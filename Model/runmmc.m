@@ -5,7 +5,7 @@ load meshdata.mat
 
 %% Pre-processing data
 airpara = [0,0,1,1];
-Optical_parameter = [airpara;reshape(Optical,[],4)];
+Optical_parameter = [airpara;reshape(Optical,[],max(elem(:,5)))'];
 Q=num2cell(light_direction);
 [w,x,y,z] = Q{:};
 R = [1-2*y^2-2*z^2,2*x*y-2*z*w,2*x*z+2*y*w;
@@ -15,6 +15,8 @@ dir = R*[0;0;-1];
 
 %% cfg build
 cfg.nphoton= double(light_info(1));
+cfg.gpuid=-1;
+cfg.unitinmm = light_info(3);
 cfg.node = node;
 cfg.elem = elem(:,1:4);
 cfg.elemprop=elem(:,5);
