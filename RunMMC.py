@@ -11,7 +11,7 @@ class runmmc(bpy.types.Operator):
     bl_idname = 'a_test.runmmc'
     
     def funrmc(self):
-        os.chdir(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model')
+        os.chdir(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model')
         ## save optical parameters and light source information
         parameters = [] # mu_a, mu_s, n, g
         light_source = [] # location, direction, photon number, Type,
@@ -37,25 +37,25 @@ class runmmc(bpy.types.Operator):
 
         #run MMC
         oc = op.Oct2Py()
-        oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/iso2mesh'))
+        oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/iso2mesh'))
         system = platform.system()
         if system == 'Windows':
-            oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/mmc/Windows/mmc'))
+            oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/mmc/Windows/mmc'))
         elif system == 'Darwin':
-            oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/mmc/MacOS/mmc'))
+            oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/mmc/MacOS/mmc'))
         elif system == 'Linux':
-            oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/mmc/Linux/mmc'))
-        oc.run(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/runmmc.m')
+            oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/mmc/Linux/mmc'))
+        oc.run(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model/runmmc.m')
         
         #remove all object and import all region as one object
         bpy.ops.object.select_all(action='SELECT')
         bpy.ops.object.delete()
-        bpy.ops.import_mesh.stl(filepath='volumic_mesh.stl', files=[{'name': 'volumic_mesh.stl'}], directory=(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model'), filter_glob="*.stl")
+        bpy.ops.import_mesh.stl(filepath='volumic_mesh.stl', files=[{'name': 'volumic_mesh.stl'}], directory=(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model'), filter_glob="*.stl")
         
         #add color to blender model
         obj = bpy.context.view_layer.objects.active
-        weight_data = scipy.io.loadmat(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/fluxlog.mat');
-        order = scipy.io.loadmat(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/nodeorder.mat');
+        weight_data = scipy.io.loadmat(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model/fluxlog.mat');
+        order = scipy.io.loadmat(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model/nodeorder.mat');
 
         def normalize(x,max,min):
             x=(x-min)/(max-min);

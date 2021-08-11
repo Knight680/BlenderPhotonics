@@ -6,11 +6,11 @@ from .Niipath import MyProperties
 from .Genert_mesh_from_nii import niitomesh
 
 class Test_Panel(bpy.types.Panel):
-    bl_label = 'MMC-In-Blender'
+    bl_label = 'BlenderPhotonics'
     bl_idname = 'A_TEST_PL'
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
-    bl_category = "MMC-In-Blender"
+    bl_category = "BlenderPhotonics"
     bl_context = "objectmode"
 
     @classmethod

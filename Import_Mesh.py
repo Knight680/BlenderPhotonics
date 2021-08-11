@@ -16,7 +16,7 @@ class import_volum_mesh(bpy.types.Operator):
 
         
         # folder path for importing .stl files
-        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/stlfile')
+        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model/stlfile')
         lst_ply = os.listdir(in_dir_ply)
 
         # Filter file list by valid file types.

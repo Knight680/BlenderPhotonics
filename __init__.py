@@ -1,5 +1,5 @@
 bl_info = {
-    "name": "Run MMC in Blender",
+    "name": "BlenderPhotonics",
     "author": "Victor",
     "version": (1, 0),  # 插件版本
     "blender": (2, 91, 0),  # 支持blender版本

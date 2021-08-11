@@ -17,7 +17,7 @@ class Creatregion(bpy.types.Operator):
     maxvolum: bpy.props.FloatProperty(default=100.0, name="Max_tetrahedraw_volum")
 
     def func(self):
-        os.chdir(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model')
+        os.chdir(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model')
         
         #remove camera and light
         for ob in bpy.context.scene.objects:
@@ -56,13 +56,13 @@ class Creatregion(bpy.types.Operator):
         print("="*40) # printing marker
 
         oc = op.Oct2Py()
-        oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/iso2mesh'))
+        oc.addpath(oc.genpath(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/iso2mesh'))
 
         v = np.array(verts)
         f = np.array(faces)
         
         # Remove last .stl file
-        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/stlfile')
+        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model/stlfile')
         lst_ply = os.listdir(in_dir_ply)
         c=0
         for item in lst_ply:
@@ -74,12 +74,12 @@ class Creatregion(bpy.types.Operator):
 
         # Save file
         scipy.io.savemat('result.mat', mdict={'v':v, 'f':f, 'ratio':self.keepratio, 'maxv':self.maxvolum})
-        oc.run(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/demo_blender.m')
+        oc.run(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model/demo_blender.m')
         
         # import volum mesh to blender(just for user to check the result)
         bpy.ops.object.select_all(action='SELECT')
         bpy.ops.object.delete()
-        bpy.ops.import_mesh.stl(filepath='volumic_mesh.stl', files=[{'name': 'volumic_mesh.stl'}], directory=(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model'), filter_glob="*.stl")
+        bpy.ops.import_mesh.stl(filepath='volumic_mesh.stl', files=[{'name': 'volumic_mesh.stl'}], directory=(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model'), filter_glob="*.stl")
 
     def execute(self, context):
         print("begin to genert volumic mesh")

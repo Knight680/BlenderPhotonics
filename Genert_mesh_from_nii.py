@@ -10,10 +10,10 @@ class niitomesh(bpy.types.Operator):
     bl_idname = 'a_test.niitomesh'
     
     def funnii(self):
-        os.chdir(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model')
+        os.chdir(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model')
         
         # Remove last .stl file
-        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/stlfile')
+        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model/stlfile')
         lst_ply = os.listdir(in_dir_ply)
         c=0
         for item in lst_ply:
@@ -27,13 +27,13 @@ class niitomesh(bpy.types.Operator):
         oc = op.Oct2Py()
         path = bpy.context.scene.my_tool.my_path
         scipy.io.savemat('path.mat', mdict={'path':path})
-        oc.run(bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/Nii_to_mesh.m')
+        oc.run(bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model/Nii_to_mesh.m')
         
         # import volum mesh to blender(just for user to check the result)
         bpy.ops.object.select_all(action='SELECT')
         bpy.ops.object.delete()
         # folder path for importing .stl files
-        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/MMC_in_Blender/Model/stlfile')
+        in_dir_ply = (bpy.utils.user_resource('SCRIPTS', "addons")+'/BlenderPhotonics/Model/stlfile')
         lst_ply = os.listdir(in_dir_ply)
 
         # Filter file list by valid file types.

@@ -4,7 +4,7 @@ f = f+1; % make index start from 1
 % f and v stores the surface patch faces and nodes
 
 %% perform mesh generation
-[node,elem,face]=s2m(v,f,ratio,maxv,'tetgen');
+[node,elem,face]=s2m(v,f,ratio,maxv,'tetgen1.5');
 save('-mat7-binary','meshdata.mat','node','elem','face');
 disp(['begin to save region mesh'])
 
