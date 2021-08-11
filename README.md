@@ -6,6 +6,7 @@ How to install:
 1, Install Blender(2.8 or higher) and Octave(5.0 or lower) and add them to PATH
 
 2, Install oct2py for Blender
+  
   Open Blender and go to script view, text below commond and run.
   ```
   import subprocess
